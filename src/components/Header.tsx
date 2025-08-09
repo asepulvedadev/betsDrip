@@ -24,7 +24,7 @@ const Header = () => {
           <Link href="/inicio" className="flex items-center gap-2" aria-label="Ir al inicio">
             <Image
               src="/LogoLateral.webp"
-              alt="Logo BetsDrip"
+              alt="Logo BestDrip"
               width={150}
               height={120}
               className="rounded-sm"

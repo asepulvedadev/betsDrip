@@ -21,7 +21,7 @@ const InicioPage = () => {
           <div className="absolute top-4 right-4 select-none pointer-events-none">
             <Image
               src="/LogoLateral.webp"
-              alt="Marca BetsDrip"
+              alt="Marca BestDrip"
               width={80}
               height={80}
               className="opacity-60"
@@ -33,7 +33,7 @@ const InicioPage = () => {
             <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 pb-10 md:pb-0">
               <div className="max-w-xl">
                 <h1 className="font-brand text-white text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  LA EXPERIENCIA BETSDRIP
+                  LA EXPERIENCIA BESTDRIP
                 </h1>
                 <p className="mt-3 text-white/90 text-sm md:text-base">
                   Visita nuestro punto de venta o compra en línea con envíos a todo México.

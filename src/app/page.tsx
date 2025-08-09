@@ -8,7 +8,7 @@ export default function SplashPage() {
         <Image
           className="dark:invert"
           src="/logo.webp"
-          alt="Logo de BetsDrip"
+          alt="Logo de BestDrip"
           width={200}
           height={42}
           priority

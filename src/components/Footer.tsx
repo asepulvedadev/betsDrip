@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           <div className="flex items-center gap-3">
             <Image src="/logo.webp" alt="Logo BestDrip" width={40} height={40} className="rounded-sm" />
-            <span className="font-brand uppercase tracking-wider text-base leading-none">BETSDRIP</span>
+            <span className="font-brand uppercase tracking-wider text-base leading-none">BESTDRIP</span>
           </div>
 
           <nav aria-label="Enlaces del sitio" className="flex items-center gap-6 text-sm uppercase tracking-wider">

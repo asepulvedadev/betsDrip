@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BetsDrips Uniformes Sublimados",
-  description: "tienda virtual BetsDrip",
+  title: "BestDrip Uniformes Sublimados",
+  description: "tienda virtual BestDrip",
 };
 
 export default function RootLayout({
