@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProductGrid from "@/components/ProductGrid";
 
 const InicioPage = () => {
   return (
@@ -47,6 +48,8 @@ const InicioPage = () => {
           </div>
         </div>
       </section>
+      {/* Grid de productos debajo del hero */}
+      <ProductGrid title="Lo nuevo" subtitle="Descubre las últimas novedades de BestDrip." />
     </div>
   );
 };
