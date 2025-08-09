@@ -3,12 +3,11 @@ import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/data/products";
 import AddToCartButton from "@/components/AddToCartButton";
 
-type Props = {
-  params: { slug: string };
-};
+type Params = { slug: string };
 
-export default function ProductDetailPage({ params }: Props) {
-  const product = getProductBySlug(params.slug);
+export default async function ProductDetailPage({ params }: { params: Promise<Params> }) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
   if (!product) return notFound();
 
   return (
