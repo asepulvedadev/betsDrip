@@ -9,7 +9,7 @@ const InicioPage = () => {
       <section className="relative">
         <div className="relative h-[62vh] min-h-[420px] w-full overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2400&auto=format&fit=crop"
+            src="/hero/60-IMG_1709.jpg"
             alt="Tienda BestDrip"
             fill
             priority
@@ -17,12 +17,23 @@ const InicioPage = () => {
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          {/* Logo marca de agua en esquina */}
+          <div className="absolute top-4 right-4 select-none pointer-events-none">
+            <Image
+              src="/logo.webp"
+              alt="Marca BetsDrip"
+              width={120}
+              height={120}
+              className="opacity-30"
+              aria-hidden
+            />
+          </div>
           {/* Texto y CTA */}
           <div className="absolute inset-0 flex items-end md:items-center">
             <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 pb-10 md:pb-0">
               <div className="max-w-xl">
                 <h1 className="font-brand text-white text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  LA EXPERIENCIA BESTDRIP
+                  LA EXPERIENCIA BETSDRIP
                 </h1>
                 <p className="mt-3 text-white/90 text-sm md:text-base">
                   Visita nuestro punto de venta o compra en línea con envíos a todo México.
