@@ -15,8 +15,8 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-30">
       {/* Barra superior de aviso */}
-      <div className="w-full bg-black text-white text-[11px] sm:text-xs tracking-wide text-center py-2">
-        ENVÍO GRATIS A TODO MÉXICO <a href="https://www.bestdrip.com.mx" className="text-white"> Ver Mas </a>
+      <div className="w-full bg-black text-white text-[11px] sm:text-xs tracking-wide h-8 flex items-center justify-center">
+        ENVÍO GRATIS A TODO MÉXICO <a href="https://www.bestdrip.com.mx" className="text-white ml-1 underline underline-offset-4">Ver más</a>
       </div>
       {/* Menú principal */}
       <div className="w-full bg-zinc-900 text-white border-b border-white/10">
