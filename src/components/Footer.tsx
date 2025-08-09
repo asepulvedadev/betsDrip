@@ -8,8 +8,8 @@ const Footer = () => {
       <div className={`max-w-6xl mx-auto px-4 sm:px-6 py-10 ${nflVikings.className}`}>
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           <div className="flex items-center gap-3">
-            <Image src="/logo.webp" alt="Logo BestDrip" width={40} height={40} className="rounded-sm" />
-            <span className="font-brand uppercase tracking-wider text-base leading-none">BESTDRIP</span>
+            <Image src="/LogoLateral.webp" alt="Logo BestDrip" width={150} height={40} className="rounded-sm" />
+            
           </div>
 
           <nav aria-label="Enlaces del sitio" className="flex items-center gap-6 text-sm uppercase tracking-wider">

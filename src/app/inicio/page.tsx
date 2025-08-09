@@ -22,9 +22,9 @@ const InicioPage = () => {
             <Image
               src="/LogoLateral.webp"
               alt="Marca BestDrip"
-              width={80}
+              width={120}
               height={80}
-              className="opacity-60"
+              className="opacity-80"
               aria-hidden
             />
           </div>
