@@ -16,15 +16,15 @@ const InicioPage = () => {
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
           {/* Logo marca de agua en esquina */}
           <div className="absolute top-4 right-4 select-none pointer-events-none">
             <Image
-              src="/logo.webp"
+              src="/LogoLateral.webp"
               alt="Marca BetsDrip"
-              width={120}
-              height={120}
-              className="opacity-30"
+              width={80}
+              height={80}
+              className="opacity-60"
               aria-hidden
             />
           </div>
