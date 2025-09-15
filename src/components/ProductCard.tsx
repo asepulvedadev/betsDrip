@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/data/products";
 import AddToCartButton from "./AddToCartButton";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   product: Product;
@@ -9,7 +11,7 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <div className="group rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 overflow-hidden shadow-sm">
+    <Card className="group rounded-xl border-black/5 dark:border-white/10 overflow-hidden shadow-sm">
       <Link href={`/producto/${product.slug}`} aria-label={`Ver detalles de ${product.name}`}>
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
@@ -21,7 +23,7 @@ const ProductCard = ({ product }: Props) => {
           />
         </div>
       </Link>
-      <div className="p-4 flex flex-col gap-3">
+      <CardContent className="p-4 flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <h3 className="text-sm font-semibold truncate" title={product.name}>
@@ -36,17 +38,18 @@ const ProductCard = ({ product }: Props) => {
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <Link
-            href={`/producto/${product.slug}`}
-            className="inline-flex items-center justify-center rounded-md border border-black/10 dark:border-white/15 px-3 py-2 text-xs font-medium hover:bg-black/5 dark:hover:bg-white/5"
-            aria-label={`Ver ${product.name}`}
-          >
-            Ver
-          </Link>
+          <Button asChild variant="outline" size="sm" className="text-xs">
+            <Link
+              href={`/producto/${product.slug}`}
+              aria-label={`Ver ${product.name}`}
+            >
+              Ver
+            </Link>
+          </Button>
           <AddToCartButton product={product} defaultSize={product.sizes?.[0]} />
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

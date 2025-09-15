@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCart } from "@/app/providers/CartProvider";
 import { nflVikings } from "@/app/fonts";
 import { useEffect, useState } from "react";
+import FreeShippingNotice from "./FreeShippingNotice";
 
 const Header = () => {
   const pathname = usePathname();
@@ -38,9 +39,7 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-30">
       {/* Barra superior de aviso */}
-      <div className="w-full bg-black text-white text-[11px] sm:text-xs tracking-wide h-8 flex items-center justify-center">
-        ENVÍO GRATIS A TODO MÉXICO <a href="https://www.bestdrip.com.mx" className="text-white ml-1 underline underline-offset-4">Ver más</a>
-      </div>
+      <FreeShippingNotice />
       {/* Menú principal */}
       <div className="w-full bg-zinc-900 text-white border-b border-white/10">
         <div className={`max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-4 ${nflVikings.className}`}>

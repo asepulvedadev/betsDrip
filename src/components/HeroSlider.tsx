@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type Slide = {
   src: string;
@@ -140,22 +141,24 @@ const HeroSlider = ({
               <p className="mt-3 text-white/90 text-sm md:text-base">{subtitle}</p>
               <div className="mt-6 flex items-center gap-3">
                 {primaryHref && (
-                  <Link
-                    href={primaryHref}
-                    className="inline-flex items-center justify-center rounded-md bg-white text-black px-5 py-3 text-sm font-semibold shadow hover:bg-white/90"
-                    aria-label={primaryLabel}
-                  >
-                    {primaryLabel}
-                  </Link>
+                  <Button asChild variant="default" className="bg-white text-black hover:bg-white/90 shadow">
+                    <Link
+                      href={primaryHref}
+                      aria-label={primaryLabel}
+                    >
+                      {primaryLabel}
+                    </Link>
+                  </Button>
                 )}
                 {secondaryHref && (
-                  <Link
-                    href={secondaryHref}
-                    className="inline-flex items-center justify-center rounded-md border border-white/60 text-white px-5 py-3 text-sm font-medium hover:bg-white/10"
-                    aria-label={secondaryLabel}
-                  >
-                    {secondaryLabel}
-                  </Link>
+                  <Button asChild variant="outline" className="border-white/60 text-white hover:bg-white/10">
+                    <Link
+                      href={secondaryHref}
+                      aria-label={secondaryLabel}
+                    >
+                      {secondaryLabel}
+                    </Link>
+                  </Button>
                 )}
               </div>
             </div>
