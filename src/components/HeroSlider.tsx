@@ -93,7 +93,7 @@ const HeroSlider = ({
   return (
     <section className="relative" aria-roledescription="carousel">
       <div
-        className="relative h-[calc(100svh-6rem)] min-h-[520px] w-full overflow-hidden"
+        className="relative mb-10 h-[calc(100vh-140px)] min-h-[500px] w-full overflow-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}

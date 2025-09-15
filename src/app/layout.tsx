@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "./providers/CartProvider";
+import FreeShippingNotice from "@/components/FreeShippingNotice";
 import Header from "@/components/Header";
 import { nflVikings } from "./fonts";
 import Footer from "@/components/Footer";
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nflVikings.variable} antialiased`}
       >
         <CartProvider>
+          <FreeShippingNotice />
           <Header />
           {children}
           <Footer />

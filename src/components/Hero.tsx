@@ -32,15 +32,15 @@ const Hero = ({
   watermarkOpacityClass = "opacity-80",
 }: HeroProps) => {
   return (
-    <section className="relative">
-      <div className="relative h-[calc(100svh-6rem)] min-h-[520px] w-full overflow-hidden">
+    <section className="relative ">
+      <div className="relative h-3/4 w-full overflow-hidden mb-10" >
         <Image
           src={backgroundSrc}
           alt="Tienda BestDrip"
           fill
           priority
           className="object-cover"
-          sizes="100vw"
+          sizes="90vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
         {/* Logo marca de agua en esquina */}

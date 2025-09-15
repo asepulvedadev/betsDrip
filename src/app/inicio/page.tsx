@@ -1,5 +1,6 @@
 import ProductGrid from "@/components/ProductGrid";
 import HeroSlider from "@/components/HeroSlider";
+import DynamicCards from "@/components/DynamicCards";
 
 const InicioPage = () => {
   return (
@@ -11,6 +12,7 @@ const InicioPage = () => {
           { src: "/hero/579A1396.JPG", alt: "Hero 3" },
         ]}
       />
+      <DynamicCards />
       {/* Grid de productos debajo del hero */}
       <ProductGrid title="Lo nuevo" subtitle="Descubre las últimas novedades de BestDrip." />
     </div>

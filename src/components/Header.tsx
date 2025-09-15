@@ -6,14 +6,19 @@ import { usePathname } from "next/navigation";
 import { useCart } from "@/app/providers/CartProvider";
 import { nflVikings } from "@/app/fonts";
 import { useEffect, useState } from "react";
-import FreeShippingNotice from "./FreeShippingNotice";
+import FreeShippingNotice from "@/components/FreeShippingNotice";
 
+<FreeShippingNotice />
 const Header = () => {
   const pathname = usePathname();
   const { totalItems } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+
+
+  
   // Evita scroll del contenido cuando el menú móvil está abierto
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -34,15 +39,25 @@ const Header = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Detectar scroll para cambiar posición del header
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Si el scroll es mayor a 1px (altura del aviso), el header toma la posición superior
+      setIsScrolled(scrollY > 1);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (pathname === "/") return null;
 
   return (
-    <header className="w-full sticky top-0 z-30">
-      {/* Barra superior de aviso */}
-      <FreeShippingNotice />
+    <header className={`w-full sticky z-30 transition-all duration-100 ease-out will-change-transform backface-visibility-hidden ${isScrolled ? 'top-0' : 'top-12'}`}>
       {/* Menú principal */}
-      <div className="w-full bg-zinc-900 text-white border-b border-white/10">
-        <div className={`max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-4 ${nflVikings.className}`}>
+      <div className="w-full bg-black text-white border-b border-white/10">
+        <div className={`max-w-6xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-4 ${nflVikings.className}`}>
           {/* Izquierda: logo */}
           <Link href="/inicio" className="flex items-center gap-2 md:justify-self-start" aria-label="Ir al inicio">
             <Image

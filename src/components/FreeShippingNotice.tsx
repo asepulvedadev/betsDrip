@@ -38,7 +38,7 @@ const FreeShippingNotice = () => {
       {(isModalOpen || isAnimating) && (
         <div className="absolute top-full left-0 right-0 z-50 bg-black/50 backdrop-blur-sm">
           <div
-            className={`w-full bg-white shadow-2xl transform transition-all duration-300 ease-out ${
+            className={`w-full bg-white shadow-2xl transform transition-all duration-250 ease-out will-change-transform ${
               isModalOpen
                 ? "translate-y-0 opacity-100"
                 : "-translate-y-4 opacity-0"
