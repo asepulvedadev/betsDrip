@@ -24,7 +24,7 @@ const FreeShippingNotice = () => {
 
   return (
     <div className="relative">
-      <div className="w-full bg-white text-gray-500 text-[14px] sm:text-xs tracking-wide h-8 min-h-[36px] flex items-center justify-center py-2">
+      <div className="w-full bg-white text-gray-500 text-[14px] sm:text-xs tracking-wide h-12 min-h-[48px] flex items-center justify-center py-3">
         ENVÍO GRATIS A TODO MÉXICO{" "}
         <button
           onClick={() => setIsModalOpen((open) => !open)}

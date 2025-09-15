@@ -42,7 +42,7 @@ const Header = () => {
       <FreeShippingNotice />
       {/* Menú principal */}
       <div className="w-full bg-zinc-900 text-white border-b border-white/10">
-        <div className={`max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-4 ${nflVikings.className}`}>
+        <div className={`max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:gap-4 ${nflVikings.className}`}>
           {/* Izquierda: logo */}
           <Link href="/inicio" className="flex items-center gap-2 md:justify-self-start" aria-label="Ir al inicio">
             <Image
