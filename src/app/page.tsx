@@ -12,6 +12,8 @@ export default function SplashPage() {
     seconds: 0,
   });
 
+  const [likes, setLikes] = useState(0);
+
   useEffect(() => {
     const targetDate = new Date('2026-01-01T00:00:00').getTime();
 
@@ -35,16 +37,12 @@ export default function SplashPage() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleLike = () => {
+    setLikes(prev => prev + 1);
+  };
+
   return (
     <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
-      <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="text-center">
-          <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            <span className="text-lg md:text-2xl font-bold tracking-wider">01 ENERO 2026</span>
-          </div>
-          <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-2 rounded-full"></div>
-        </div>
-      </div>
       <main className="flex flex-col items-center justify-center gap-8 md:gap-12 text-center w-full max-w-6xl">
         <Image
           className="dark:invert w-48 md:w-72 h-auto"
@@ -61,7 +59,7 @@ export default function SplashPage() {
           <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
             Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
           </p>
-          <div className="flex flex-wrap gap-4 md:gap-6 text-center justify-center">
+          <div className="flex flex-wrap gap-4 md:gap-6 text-center justify-center mb-8 md:mb-12">
             <div className="flex flex-col items-center">
               <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
               <span className="text-sm text-gray-400">Días</span>
@@ -77,6 +75,18 @@ export default function SplashPage() {
             <div className="flex flex-col items-center">
               <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
               <span className="text-sm text-gray-400">Segundos</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-4">
+            <button
+              onClick={handleLike}
+              className="flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg"
+            >
+              <span className="text-2xl">❤️</span>
+              <span>Me gusta</span>
+            </button>
+            <div className="text-lg font-semibold">
+              {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
           </div>
         </div>
