@@ -14,6 +14,7 @@ export default function SplashPage() {
 
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
+  const [deviceId, setDeviceId] = useState('');
 
   useEffect(() => {
     const targetDate = new Date('2026-01-01T00:00:00').getTime();
@@ -35,20 +36,54 @@ export default function SplashPage() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
 
-    // Check if user has already liked (using localStorage)
-    const liked = localStorage.getItem('bestdrip-liked');
-    if (liked === 'true') {
-      setHasLiked(true);
+    // Generate or get device ID
+    let device = localStorage.getItem('bestdrip-device-id');
+    if (!device) {
+      device = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('bestdrip-device-id', device);
     }
+    setDeviceId(device);
+
+    // Load likes data
+    loadLikesData();
 
     return () => clearInterval(interval);
   }, []);
 
-  const handleLike = () => {
-    if (!hasLiked) {
-      setLikes(prev => prev + 1);
-      setHasLiked(true);
-      localStorage.setItem('bestdrip-liked', 'true');
+  const loadLikesData = async () => {
+    try {
+      const response = await fetch('/api/likes');
+      const data = await response.json();
+      setLikes(data.totalLikes);
+
+      // Check if this device has liked
+      const device = localStorage.getItem('bestdrip-device-id');
+      const hasLikedBefore = data.devices.includes(device);
+      setHasLiked(hasLikedBefore);
+    } catch (error) {
+      console.error('Error loading likes:', error);
+    }
+  };
+
+  const handleLike = async () => {
+    if (!hasLiked && deviceId) {
+      try {
+        const response = await fetch('/api/likes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ deviceId }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setLikes(data.totalLikes);
+          setHasLiked(true);
+        }
+      } catch (error) {
+        console.error('Error liking:', error);
+      }
     }
   };
 
