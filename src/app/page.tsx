@@ -36,8 +36,11 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full font-sans bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 text-black dark:text-white flex items-center justify-center p-8">
-      <main className="flex flex-col items-center justify-center gap-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-12 max-w-md w-full">
+    <div className="min-h-screen w-full font-sans bg-black text-white flex items-center justify-center p-8 relative">
+      <div className="absolute top-4 right-4 text-sm text-gray-400">
+        1 enero 2026
+      </div>
+      <main className="flex flex-col items-center justify-center gap-8">
         <Image
           className="dark:invert"
           src="/logo.webp"
@@ -48,25 +51,25 @@ export default function SplashPage() {
         />
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+          <p className="text-lg text-gray-300 mb-8">
             Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
           </p>
-          <div className="flex gap-4 text-center">
-            <div className="flex flex-col">
-              <span className="text-3xl font-bold">{timeLeft.days}</span>
-              <span className="text-sm text-gray-500">Días</span>
+          <div className="flex gap-6 text-center">
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
+              <span className="text-sm text-gray-400">Días</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-3xl font-bold">{timeLeft.hours}</span>
-              <span className="text-sm text-gray-500">Horas</span>
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
+              <span className="text-sm text-gray-400">Horas</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-3xl font-bold">{timeLeft.minutes}</span>
-              <span className="text-sm text-gray-500">Minutos</span>
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
+              <span className="text-sm text-gray-400">Minutos</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-3xl font-bold">{timeLeft.seconds}</span>
-              <span className="text-sm text-gray-500">Segundos</span>
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
+              <span className="text-sm text-gray-400">Segundos</span>
             </div>
           </div>
         </div>
