@@ -45,7 +45,7 @@ export default function SplashPage() {
     <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
       <main className="flex flex-col items-center justify-center gap-8 md:gap-12 text-center w-full max-w-6xl">
         <Image
-          className="dark:invert w-72 h-auto"
+          className="dark:invert w-48 md:w-72 h-auto"
           src="/logo.webp"
           alt="Logo de BestDrip"
           width={300}
