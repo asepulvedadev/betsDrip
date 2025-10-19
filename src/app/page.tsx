@@ -36,47 +36,47 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-8 relative">
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+    <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
+      <div className="absolute top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-10">
         <div className="text-center">
           <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            <span className="text-2xl font-bold tracking-wider">01 ENERO 2026</span>
+            <span className="text-lg md:text-2xl font-bold tracking-wider">01 ENERO 2026</span>
           </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-2 rounded-full"></div>
+          <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-2 rounded-full"></div>
         </div>
       </div>
-      <main className="flex flex-col items-center justify-center gap-12 text-center">
+      <main className="flex flex-col items-center justify-center gap-8 md:gap-12 text-center w-full max-w-6xl">
         <Image
-          className="dark:invert"
+          className="dark:invert w-48 md:w-72 h-auto"
           src="/logo.webp"
           alt="Logo de BestDrip"
           width={300}
           height={63}
           priority
         />
-        <div>
-          <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+        <div className="w-full">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Coming Soon
           </h1>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
             Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
           </p>
-          <div className="flex gap-8 text-center justify-center">
-            <div className="flex flex-col items-center bg-gray-900 rounded-2xl p-6 min-w-[120px] shadow-2xl border border-gray-800">
-              <span className="text-6xl font-bold animate-pulse transition-all duration-500 ease-in-out text-blue-400">{timeLeft.days}</span>
-              <span className="text-sm text-gray-400 uppercase tracking-wider mt-2">Días</span>
+          <div className="flex flex-wrap gap-4 md:gap-6 text-center justify-center">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
+              <span className="text-sm text-gray-400">Días</span>
             </div>
-            <div className="flex flex-col items-center bg-gray-900 rounded-2xl p-6 min-w-[120px] shadow-2xl border border-gray-800">
-              <span className="text-6xl font-bold animate-pulse transition-all duration-500 ease-in-out text-green-400">{timeLeft.hours}</span>
-              <span className="text-sm text-gray-400 uppercase tracking-wider mt-2">Horas</span>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
+              <span className="text-sm text-gray-400">Horas</span>
             </div>
-            <div className="flex flex-col items-center bg-gray-900 rounded-2xl p-6 min-w-[120px] shadow-2xl border border-gray-800">
-              <span className="text-6xl font-bold animate-pulse transition-all duration-500 ease-in-out text-yellow-400">{timeLeft.minutes}</span>
-              <span className="text-sm text-gray-400 uppercase tracking-wider mt-2">Minutos</span>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
+              <span className="text-sm text-gray-400">Minutos</span>
             </div>
-            <div className="flex flex-col items-center bg-gray-900 rounded-2xl p-6 min-w-[120px] shadow-2xl border border-gray-800">
-              <span className="text-6xl font-bold animate-pulse transition-all duration-500 ease-in-out text-red-400">{timeLeft.seconds}</span>
-              <span className="text-sm text-gray-400 uppercase tracking-wider mt-2">Segundos</span>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
+              <span className="text-sm text-gray-400">Segundos</span>
             </div>
           </div>
         </div>
