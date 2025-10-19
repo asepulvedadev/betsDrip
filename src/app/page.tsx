@@ -13,6 +13,7 @@ export default function SplashPage() {
   });
 
   const [likes, setLikes] = useState(0);
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date('2026-01-01T00:00:00').getTime();
@@ -34,11 +35,21 @@ export default function SplashPage() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
 
+    // Check if user has already liked (using localStorage)
+    const liked = localStorage.getItem('bestdrip-liked');
+    if (liked === 'true') {
+      setHasLiked(true);
+    }
+
     return () => clearInterval(interval);
   }, []);
 
   const handleLike = () => {
-    setLikes(prev => prev + 1);
+    if (!hasLiked) {
+      setLikes(prev => prev + 1);
+      setHasLiked(true);
+      localStorage.setItem('bestdrip-liked', 'true');
+    }
   };
 
   return (
@@ -80,10 +91,15 @@ export default function SplashPage() {
           <div className="flex flex-col items-center gap-4">
             <button
               onClick={handleLike}
-              className="flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg"
+              disabled={hasLiked}
+              className={`flex items-center gap-3 px-6 py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg ${
+                hasLiked
+                  ? 'bg-gray-600 cursor-not-allowed text-gray-300'
+                  : 'bg-red-600 hover:bg-red-700 text-white'
+              }`}
             >
-              <span className="text-2xl">❤️</span>
-              <span>Me gusta</span>
+              <span className="text-2xl">{hasLiked ? '💖' : '❤️'}</span>
+              <span>{hasLiked ? '¡Gracias!' : 'Me gusta'}</span>
             </button>
             <div className="text-lg font-semibold">
               {likes} {likes === 1 ? 'like' : 'likes'}
