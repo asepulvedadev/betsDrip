@@ -53,10 +53,10 @@ export default function SplashPage() {
   };
 
   return (
-    <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
-      <main className="flex flex-col items-center justify-center gap-8 md:gap-12 text-center w-full max-w-6xl">
+    <div className="min-h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden">
+      <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl py-4">
         <Image
-          className="dark:invert w-48 md:w-72 h-auto"
+          className="dark:invert w-32 md:w-48 h-auto"
           src="/logo.webp"
           alt="Logo de BestDrip"
           width={300}
@@ -64,44 +64,44 @@ export default function SplashPage() {
           priority
         />
         <div className="w-full">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Coming Soon
           </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-base md:text-lg text-gray-300 mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed px-2">
             Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
           </p>
-          <div className="flex flex-wrap gap-4 md:gap-6 text-center justify-center mb-8 md:mb-12">
+          <div className="flex flex-wrap gap-3 md:gap-4 text-center justify-center mb-6 md:mb-8">
             <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
-              <span className="text-sm text-gray-400">Días</span>
+              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
+              <span className="text-xs md:text-sm text-gray-400">Días</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
-              <span className="text-sm text-gray-400">Horas</span>
+              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
+              <span className="text-xs md:text-sm text-gray-400">Horas</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
-              <span className="text-sm text-gray-400">Minutos</span>
+              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
+              <span className="text-xs md:text-sm text-gray-400">Minutos</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
-              <span className="text-sm text-gray-400">Segundos</span>
+              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
+              <span className="text-xs md:text-sm text-gray-400">Segundos</span>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-3">
             <button
               onClick={handleLike}
               disabled={hasLiked}
-              className={`flex items-center gap-3 px-6 py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg ${
+              className={`flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg text-sm md:text-base ${
                 hasLiked
                   ? 'bg-gray-600 cursor-not-allowed text-gray-300'
                   : 'bg-red-600 hover:bg-red-700 text-white'
               }`}
             >
-              <span className="text-2xl">{hasLiked ? '💖' : '❤️'}</span>
+              <span className="text-xl md:text-2xl">{hasLiked ? '💖' : '❤️'}</span>
               <span>{hasLiked ? '¡Gracias!' : 'Me gusta'}</span>
             </button>
-            <div className="text-lg font-semibold">
+            <div className="text-base md:text-lg font-semibold">
               {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
           </div>
