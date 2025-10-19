@@ -56,7 +56,7 @@ export default function SplashPage() {
     <div className="min-h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden">
       <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl py-4">
         <Image
-          className="dark:invert w-32 md:w-48 h-auto"
+          className="dark:invert w-32 md:w-48 h-auto animate-pulse"
           src="/logo.webp"
           alt="Logo de BestDrip"
           width={300}
@@ -92,16 +92,15 @@ export default function SplashPage() {
             <button
               onClick={handleLike}
               disabled={hasLiked}
-              className={`flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold transition-colors duration-200 shadow-lg text-sm md:text-base ${
+              className={`flex items-center justify-center w-16 h-16 md:w-20 md:h-20 border-2 rounded-lg font-semibold transition-all duration-200 text-sm md:text-base ${
                 hasLiked
-                  ? 'bg-gray-600 cursor-not-allowed text-gray-300'
-                  : 'bg-red-600 hover:bg-red-700 text-white'
+                  ? 'border-gray-600 text-gray-400 cursor-not-allowed shadow-gray-600/50 shadow-lg'
+                  : 'border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 hover:shadow-red-500/50 shadow-lg hover:shadow-xl'
               }`}
             >
-              <span className="text-xl md:text-2xl">{hasLiked ? '💖' : '❤️'}</span>
-              <span>{hasLiked ? '¡Gracias!' : 'Me gusta'}</span>
+              <span className="text-2xl md:text-3xl">{hasLiked ? '💖' : '❤️'}</span>
             </button>
-            <div className="text-base md:text-lg font-semibold">
+            <div className="text-base md:text-lg font-semibold text-gray-300">
               {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
           </div>
