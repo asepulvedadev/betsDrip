@@ -1,24 +1,14 @@
-import ProductGrid from "@/components/ProductGrid";
-import HeroSlider from "@/components/HeroSlider";
-import DynamicCards from "@/components/DynamicCards";
-
-const InicioPage = () => {
+export default function InicioPage() {
   return (
-    <div className="w-full">
-      <HeroSlider
-        slides={[
-          { src: "/hero/60-IMG_1709.jpg", alt: "Hero 1" },
-          { src: "/hero/IMG_1985.jpg", alt: "Hero 2" },
-          { src: "/hero/579A1396.JPG", alt: "Hero 3" },
-        ]}
-      />
-      <DynamicCards />
-      {/* Grid de productos debajo del hero */}
-      <ProductGrid title="Lo nuevo" subtitle="Descubre las últimas novedades de BestDrip." />
+    <div className="min-h-screen w-full font-sans bg-black text-white flex items-center justify-center p-8">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
+        <p className="text-lg text-gray-300">
+          Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
+        </p>
+      </div>
     </div>
   );
-};
-
-export default InicioPage;
+}
 
 

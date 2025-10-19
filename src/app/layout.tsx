@@ -33,10 +33,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${nflVikings.variable} antialiased`}
       >
         <CartProvider>
-          <FreeShippingNotice />
+          {/* <FreeShippingNotice />
           <Header />
           {children}
-          <Footer />
+          <Footer /> */}
+          {children}
         </CartProvider>
       </body>
     </html>
