@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function SplashPage() {
   const [showVideo, setShowVideo] = useState(true);
+  const videoRef = useRef<HTMLIFrameElement>(null);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -92,7 +93,8 @@ export default function SplashPage() {
     return (
       <div className="fixed inset-0 z-50 bg-black">
         <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false"
+          ref={videoRef}
+          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false&loop=false"
           width="100%"
           height="100%"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
@@ -100,10 +102,11 @@ export default function SplashPage() {
           frameBorder="0"
           style={{ border: 'none' }}
           onLoad={() => {
-            // Auto-hide video after it ends (assuming ~15-20 seconds based on previous duration)
+            // Auto-transition after video duration (adjust based on actual video length)
+            const videoDuration = 15000; // 15 seconds - adjust this based on your video length
             setTimeout(() => {
               setShowVideo(false);
-            }, 20000); // 20 seconds to be safe
+            }, videoDuration);
           }}
         />
       </div>
