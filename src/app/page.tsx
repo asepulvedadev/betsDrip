@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function SplashPage() {
   const [showVideo, setShowVideo] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLIFrameElement>(null);
 
   const [timeLeft, setTimeLeft] = useState({
@@ -19,6 +20,15 @@ export default function SplashPage() {
   const [deviceId, setDeviceId] = useState('');
 
   useEffect(() => {
+    // Detect mobile device
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || (window as unknown as { opera: string }).opera;
+      const isMobileDevice = /android|avantgo|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(userAgent);
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+
     const targetDate = new Date('2026-01-01T00:00:00').getTime();
 
     const updateCountdown = () => {
@@ -91,26 +101,39 @@ export default function SplashPage() {
 
   if (showVideo) {
     return (
-      <div className="fixed inset-0 z-50 bg-black">
-        <iframe
-          ref={videoRef}
-          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=1&muted=false&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
-          width="100%"
-          height="100%"
-          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-          allowFullScreen
-          frameBorder="0"
-          style={{ border: 'none', pointerEvents: 'none' }}
-          onLoad={() => {
-            // Auto-transition immediately when video ends
-            const videoDuration = 13000; // 13 seconds for immediate transition
-            setTimeout(() => {
-              setShowVideo(false);
-            }, videoDuration);
-          }}
-        />
-        {/* Overlay to prevent any interaction */}
-        <div className="absolute inset-0 bg-transparent pointer-events-none" />
+      <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+        {isMobile ? (
+          // Mobile: show play button
+          <div className="text-center">
+            <button
+              onClick={() => {
+                setTimeout(() => setShowVideo(false), 13000);
+              }}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl mb-4"
+            >
+              ▶️ Reproducir Video
+            </button>
+            <p className="text-white text-sm">Toca para ver el video de BESTDRIP</p>
+          </div>
+        ) : (
+          // Desktop: autoplay video
+          <iframe
+            ref={videoRef}
+            src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=1&muted=false&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
+            width="100%"
+            height="100%"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowFullScreen
+            frameBorder="0"
+            style={{ border: 'none', pointerEvents: 'none' }}
+            onLoad={() => {
+              const videoDuration = 13000;
+              setTimeout(() => {
+                setShowVideo(false);
+              }, videoDuration);
+            }}
+          />
+        )}
       </div>
     );
   }
