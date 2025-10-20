@@ -103,17 +103,18 @@ export default function SplashPage() {
     return (
       <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
         {isMobile ? (
-          // Mobile: show play button
+          // Mobile: show play button that opens video in new tab
           <div className="text-center">
             <button
               onClick={() => {
+                window.open('https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=true&autoplay=1&muted=false&loop=false', '_blank');
                 setTimeout(() => setShowVideo(false), 13000);
               }}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl mb-4"
             >
-              ▶️ Reproducir Video
+              ▶️ Ver Video BESTDRIP
             </button>
-            <p className="text-white text-sm">Toca para ver el video de BESTDRIP</p>
+            <p className="text-white text-sm">Se abrirá en una nueva pestaña</p>
           </div>
         ) : (
           // Desktop: autoplay video
