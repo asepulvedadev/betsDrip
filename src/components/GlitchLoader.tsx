@@ -7,15 +7,7 @@ interface GlitchLoaderProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const GlitchLoader: React.FC<GlitchLoaderProps> = ({
-  text = "BESTDRIP",
-  size = 'md'
-}) => {
-  const sizeClasses = {
-    sm: 'text-2xl',
-    md: 'text-4xl',
-    lg: 'text-6xl'
-  };
+const GlitchLoader: React.FC<GlitchLoaderProps> = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-black overflow-hidden">
