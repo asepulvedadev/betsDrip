@@ -107,15 +107,12 @@ export default function SplashPage() {
           <div className="text-center">
             <button
               onClick={() => {
-                // Try to play video on mobile
-                if (videoRef.current) {
-                  // Force play attempt
+                  // For mobile: simulate video playback and transition
                   const playVideo = () => {
-                    setTimeout(() => setShowVideo(false), 15000);
+                    setTimeout(() => setShowVideo(false), 14000); // 14 seconds to account for button press delay
                   };
                   playVideo();
-                }
-              }}
+                }}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl mb-4"
             >
               ▶️ Reproducir Video
@@ -135,7 +132,7 @@ export default function SplashPage() {
             style={{ border: 'none' }}
             onLoad={() => {
               // Auto-transition after video duration
-              const videoDuration = 15000; // 15 seconds
+              const videoDuration = 14000; // 14 seconds for smoother transition
               setTimeout(() => {
                 setShowVideo(false);
               }, videoDuration);
