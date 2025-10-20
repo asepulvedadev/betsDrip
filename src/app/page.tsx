@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function SplashPage() {
+  const [showVideo, setShowVideo] = useState(true);
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -46,7 +48,6 @@ export default function SplashPage() {
     // Load likes data
     loadLikesData();
 
-
     return () => clearInterval(interval);
   }, []);
 
@@ -87,7 +88,27 @@ export default function SplashPage() {
     }
   };
 
-  // Remove loading state - show home directly
+  if (showVideo) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black">
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false"
+          width="100%"
+          height="100%"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowFullScreen
+          frameBorder="0"
+          style={{ border: 'none' }}
+          onLoad={() => {
+            // Auto-hide video after it ends (assuming ~15-20 seconds based on previous duration)
+            setTimeout(() => {
+              setShowVideo(false);
+            }, 20000); // 20 seconds to be safe
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden">
@@ -105,7 +126,7 @@ export default function SplashPage() {
             Coming Soon
           </h1>
           <p className="text-base md:text-lg text-gray-300 mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed px-2">
-            Estamos trabajando duro para traerte la mejor experiencia. ¡Mantente atento!
+            Estamos trabajando duro para traerte tu mejor Drip!
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 text-center justify-center mb-6 md:mb-8">
             <div className="flex flex-col items-center">
