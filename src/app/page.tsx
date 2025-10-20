@@ -120,24 +120,28 @@ export default function SplashPage() {
             <p className="text-white text-sm">Toca para ver el video de BESTDRIP</p>
           </div>
         ) : (
-          // For desktop: autoplay video
-          <iframe
-            ref={videoRef}
-            src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false&loop=false"
-            width="100%"
-            height="100%"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen
-            frameBorder="0"
-            style={{ border: 'none' }}
-            onLoad={() => {
-              // Auto-transition after video duration
-              const videoDuration = 14000; // 14 seconds for smoother transition
-              setTimeout(() => {
-                setShowVideo(false);
-              }, videoDuration);
-            }}
-          />
+          // For desktop: autoplay video with no controls
+          <div className="relative w-full h-full">
+            <iframe
+              ref={videoRef}
+              src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
+              width="100%"
+              height="100%"
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowFullScreen
+              frameBorder="0"
+              style={{ border: 'none', pointerEvents: 'none' }}
+              onLoad={() => {
+                // Auto-transition immediately when video ends
+                const videoDuration = 13000; // 13 seconds for immediate transition
+                setTimeout(() => {
+                  setShowVideo(false);
+                }, videoDuration);
+              }}
+            />
+            {/* Overlay to prevent any interaction */}
+            <div className="absolute inset-0 bg-transparent pointer-events-none" />
+          </div>
         )}
       </div>
     );
