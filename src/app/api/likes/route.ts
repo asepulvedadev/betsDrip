@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // In-memory storage for deployment (since file system access may be limited)
-let likesData = {
+const likesData = {
   totalLikes: 0,
   devices: [] as string[]
 };

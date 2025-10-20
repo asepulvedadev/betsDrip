@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import GlitchLoader from "../components/GlitchLoader";
 
 export default function SplashPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -47,6 +48,11 @@ export default function SplashPage() {
     // Load likes data
     loadLikesData();
 
+    // Simulate loading time for glitch effect
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -86,6 +92,10 @@ export default function SplashPage() {
       }
     }
   };
+
+  if (isLoading) {
+    return <GlitchLoader />;
+  }
 
   return (
     <div className="min-h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden">
