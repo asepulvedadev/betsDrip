@@ -92,7 +92,7 @@ export default function SplashPage() {
       <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl py-4">
         <Image
           className="w-32 md:w-48 h-auto animate-pulse"
-          src="/globe.svg"
+          src="/globe-darkmode.svg"
           alt="Logo de BestDrip"
           width={300}
           height={63}
