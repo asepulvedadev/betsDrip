@@ -36,7 +36,7 @@ export default function SplashPage() {
     };
 
     updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
+    const interval = setInterval(updateCountdown, 500);
 
     // Generate or get device ID
     let device = localStorage.getItem('bestdrip-device-id');
@@ -91,22 +91,16 @@ export default function SplashPage() {
 
   if (showVideo) {
     return (
-      <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+      <div className="fixed inset-0 z-50 bg-black">
         <iframe
           ref={videoRef}
-          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default"
-          width="640"
-          height="360"
-          style={{
-            height: 'auto',
-            width: '100%',
-            aspectRatio: '640 / 360',
-            border: 'none',
-            pointerEvents: 'none'
-          }}
+          src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=1&muted=false&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
+          width="100%"
+          height="100%"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           allowFullScreen
           frameBorder="0"
+          style={{ border: 'none', pointerEvents: 'none' }}
           onLoad={() => {
             // Auto-transition immediately when video ends
             const videoDuration = 13000; // 13 seconds for immediate transition
