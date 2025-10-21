@@ -103,24 +103,26 @@ export default function SplashPage() {
     return (
       <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
         {isMobile ? (
-          // Mobile: show play button that opens video in new tab
+          // Mobile: show direct link to video
           <div className="text-center">
-            <button
+            <a
+              href="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=true&autoplay=1&muted=false&loop=false"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => {
-                window.open('https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=true&autoplay=1&muted=false&loop=false', '_blank');
                 setTimeout(() => setShowVideo(false), 13000);
               }}
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl mb-4"
+              className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-lg text-xl mb-4 no-underline"
             >
               ▶️ Ver Video BESTDRIP
-            </button>
-            <p className="text-white text-sm">Se abrirá en una nueva pestaña</p>
+            </a>
+            <p className="text-white text-sm">Haz clic para ver el video</p>
           </div>
         ) : (
           // Desktop: autoplay video
           <iframe
             ref={videoRef}
-            src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=1&muted=false&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
+            src="https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&loop=false&show_jump_controls=false&show_logo=false&show_hd_button=false&show_volume_control=false"
             width="100%"
             height="100%"
             allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
@@ -128,7 +130,7 @@ export default function SplashPage() {
             frameBorder="0"
             style={{ border: 'none', pointerEvents: 'none' }}
             onLoad={() => {
-              const videoDuration = 13000;
+              const videoDuration =13000;
               setTimeout(() => {
                 setShowVideo(false);
               }, videoDuration);
