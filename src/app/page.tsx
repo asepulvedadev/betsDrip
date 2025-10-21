@@ -58,6 +58,7 @@ export default function SplashPage() {
       if (audioRef.current) {
         try {
           audioRef.current.volume = 0.3; // 30% volume
+          audioRef.current.muted = isMuted; // Set initial mute state
           await audioRef.current.play();
         } catch (error) {
           console.log('Audio autoplay blocked, waiting for user interaction');
@@ -112,6 +113,12 @@ export default function SplashPage() {
     setIsMuted(!isMuted);
     if (audioRef.current) {
       audioRef.current.muted = !isMuted;
+      if (!isMuted) {
+        // If unmuting, try to play
+        audioRef.current.play().catch(error => {
+          console.log('Audio play failed:', error);
+        });
+      }
     }
   };
 
@@ -138,7 +145,7 @@ export default function SplashPage() {
       {/* Floating Mute Button */}
       <button
         onClick={toggleMute}
-        className="fixed top-4 right-4 z-40 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+        className="fixed top-4 right-4 z-40 bg-white hover:bg-gray-300 text-black p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
         aria-label={isMuted ? "Unmute audio" : "Mute audio"}
       >
         {isMuted ? (
@@ -154,9 +161,9 @@ export default function SplashPage() {
           </svg>
         )}
       </button>
-      <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl">
+      <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-2xl">
         <Image
-          className="w-32 md:w-48 h-auto animate-pulse"
+          className="w-24 md:w-32 h-auto animate-pulse"
           src="/globe-darkmode.svg"
           alt="Logo de BestDrip"
           width={300}
@@ -164,27 +171,27 @@ export default function SplashPage() {
           priority
         />
         <div className="w-full">
-          <h1 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Coming Soon
           </h1>
-          <p className="text-base md:text-lg text-gray-300 mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed px-2">
+          <p className="text-sm md:text-base text-gray-300 mb-6 md:mb-8 max-w-lg mx-auto leading-relaxed px-2">
             Estamos trabajando duro para traerte tu mejor Drip!
           </p>
-          <div className="flex flex-wrap gap-3 md:gap-4 text-center justify-center mb-6 md:mb-8">
+          <div className="flex flex-wrap gap-2 md:gap-3 text-center justify-center mb-6 md:mb-8">
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
+              <span className="text-2xl md:text-3xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.days}</span>
               <span className="text-xs md:text-sm text-gray-400">Días</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
+              <span className="text-2xl md:text-3xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.hours}</span>
               <span className="text-xs md:text-sm text-gray-400">Horas</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
+              <span className="text-2xl md:text-3xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.minutes}</span>
               <span className="text-xs md:text-sm text-gray-400">Minutos</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
+              <span className="text-2xl md:text-3xl font-bold animate-pulse transition-all duration-500 ease-in-out">{timeLeft.seconds}</span>
               <span className="text-xs md:text-sm text-gray-400">Segundos</span>
             </div>
           </div>
@@ -192,15 +199,15 @@ export default function SplashPage() {
             <button
               onClick={handleLike}
               disabled={hasLiked}
-              className={`flex items-center justify-center w-16 h-16 md:w-20 md:h-20 border-2 rounded-lg font-semibold transition-all duration-200 text-sm md:text-base ${
+              className={`flex items-center justify-center w-12 h-12 md:w-16 md:h-16 border-2 rounded-lg font-semibold transition-all duration-200 text-sm md:text-base ${
                 hasLiked
                   ? 'border-gray-600 text-gray-400 cursor-not-allowed shadow-gray-600/50 shadow-lg'
-                  : 'border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 hover:shadow-red-500/50 shadow-lg hover:shadow-xl'
+                  : 'border-white text-white hover:border-gray-300 hover:text-gray-300 hover:shadow-white/50 shadow-lg hover:shadow-xl'
               }`}
             >
-              <span className="text-2xl md:text-3xl">{hasLiked ? '💖' : '❤️'}</span>
+              <span className="text-xl md:text-2xl">{hasLiked ? '💖' : '❤️'}</span>
             </button>
-            <div className="text-base md:text-lg font-semibold text-gray-300">
+            <div className="text-sm md:text-base font-semibold text-gray-300">
               {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
           </div>
