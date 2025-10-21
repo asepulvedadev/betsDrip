@@ -6,7 +6,7 @@ import VideoPreloader from "@/components/VideoPreloader";
 
 export default function SplashPage() {
   const [showVideo, setShowVideo] = useState(true);
-  const [videoKey] = useState(() => Date.now()); // Key generada solo una vez
+  const [videoKey] = useState(Date.now()); // Key única para esta carga
   const [showHome, setShowHome] = useState(false);
 
   const [timeLeft, setTimeLeft] = useState({
