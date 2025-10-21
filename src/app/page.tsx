@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import VideoPreloader from "@/components/VideoPreloader";
 
 export default function SplashPage() {
   const [showVideo, setShowVideo] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [videoKey] = useState(Date.now()); // Key única para esta carga
   const [showHome, setShowHome] = useState(false);
 
@@ -51,6 +53,21 @@ export default function SplashPage() {
     // Load likes data
     loadLikesData();
 
+    // Initialize audio
+    const initAudio = async () => {
+      if (audioRef.current) {
+        try {
+          audioRef.current.volume = 0.3; // 30% volume
+          await audioRef.current.play();
+        } catch (error) {
+          console.log('Audio autoplay blocked, waiting for user interaction');
+        }
+      }
+    };
+
+    // Start audio after a short delay to ensure DOM is ready
+    setTimeout(initAudio, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -91,6 +108,13 @@ export default function SplashPage() {
     }
   };
 
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+    }
+  };
+
   if (showVideo) {
     return <VideoPreloader key={videoKey} onVideoEnd={() => {
       setShowVideo(false);
@@ -101,6 +125,35 @@ export default function SplashPage() {
 
   return (
     <div className={`h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden transition-opacity duration-500 ${showHome ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Background Audio */}
+      <audio
+        ref={audioRef}
+        src="/We Ready.mp3"
+        loop
+        autoPlay
+        muted={isMuted}
+        preload="auto"
+      />
+
+      {/* Floating Mute Button */}
+      <button
+        onClick={toggleMute}
+        className="fixed top-4 right-4 z-40 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+        aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+      >
+        {isMuted ? (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        ) : (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </button>
       <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl">
         <Image
           className="w-32 md:w-48 h-auto animate-pulse"
