@@ -8,21 +8,9 @@ interface VideoPreloaderProps {
 
 export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
   const hasEndedRef = useRef(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [fadeOut, setFadeOut] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
-  // Generar URL del video solo una vez en el cliente
-  const videoSrcRef = useRef<string>('');
-  const isMobileRef = useRef<boolean>(false);
-
-  if (typeof window !== 'undefined' && !videoSrcRef.current) {
-    const timestamp = Date.now();
-    // Detectar si es móvil
-    isMobileRef.current = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    // Iniciar con sonido en todos los dispositivos para mejor experiencia
-    videoSrcRef.current = `https://player.cloudinary.com/embed/?cloud_name=dipoc90ti&public_id=BESTDRIP_adspfj&profile=cld-default&controls=false&autoplay=true&muted=false&loop=false&show_jump_controls=false&show_logo=false&preload=auto&hideContextMenu=true&posterOptions.transformation[startOffset]=0&playsinline=true&t=${timestamp}`;
-  }
 
   // Marcar como montado para renderizar en el cliente
   useEffect(() => {
@@ -43,17 +31,41 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
   };
 
   useEffect(() => {
-    // Establecer temporizador basado en duración del video (5 segundos)
-    const timer = setTimeout(() => {
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+
+    // Intentar reproducir el video
+    const playVideo = async () => {
+      try {
+        await video.play();
+
+        // Activar sonido después de 400ms
+        setTimeout(() => {
+          if (video) {
+            video.muted = false;
+          }
+        }, 400);
+      } catch (error) {
+        console.error('Error playing video:', error);
+      }
+    };
+
+    playVideo();
+
+    // Listener para cuando el video termine
+    const handleEnded = () => {
       handleVideoEnd();
-    }, 5000);
+    };
+
+    video.addEventListener('ended', handleEnded);
 
     return () => {
-      clearTimeout(timer);
+      video.removeEventListener('ended', handleEnded);
     };
-  }, []);
+  }, [isMounted]);
 
-  if (!isMounted || !videoSrcRef.current) {
+  if (!isMounted) {
     return (
       <div className="fixed inset-0 z-50 bg-black flex items-center justify-center" />
     );
@@ -65,16 +77,19 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <iframe
-        ref={iframeRef}
-        src={videoSrcRef.current}
-        width="100%"
-        height="100%"
-        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-        loading="eager"
-        title="BestDrip Video"
-        style={{ border: 'none', pointerEvents: 'none', backgroundColor: 'black' }}
-      />
+      <video
+        ref={videoRef}
+        className="w-full h-full object-contain"
+        muted
+        playsInline
+        preload="auto"
+        style={{ backgroundColor: 'black' }}
+      >
+        <source
+          src="https://res.cloudinary.com/dipoc90ti/video/upload/BESTDRIP_adspfj.mp4"
+          type="video/mp4"
+        />
+      </video>
     </div>
   );
 }
