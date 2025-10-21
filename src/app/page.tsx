@@ -6,6 +6,8 @@ import VideoPreloader from "@/components/VideoPreloader";
 
 export default function SplashPage() {
   const [showVideo, setShowVideo] = useState(true);
+  const [videoKey] = useState(() => Date.now()); // Key generada solo una vez
+  const [showHome, setShowHome] = useState(false);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -90,11 +92,15 @@ export default function SplashPage() {
   };
 
   if (showVideo) {
-    return <VideoPreloader onVideoEnd={() => setShowVideo(false)} />;
+    return <VideoPreloader key={videoKey} onVideoEnd={() => {
+      setShowVideo(false);
+      // Activar fade in del home
+      setTimeout(() => setShowHome(true), 50);
+    }} />;
   }
 
   return (
-    <div className="h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden">
+    <div className={`h-screen w-full font-sans bg-black text-white flex flex-col items-center justify-center p-2 md:p-4 relative overflow-hidden transition-opacity duration-500 ${showHome ? 'opacity-100' : 'opacity-0'}`}>
       <main className="flex flex-col items-center justify-center gap-4 md:gap-6 text-center w-full max-w-4xl">
         <Image
           className="w-32 md:w-48 h-auto animate-pulse"
