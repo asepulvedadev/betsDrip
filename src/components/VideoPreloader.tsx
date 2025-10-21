@@ -38,14 +38,8 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
     // Intentar reproducir el video
     const playVideo = async () => {
       try {
+        // El video se reproduce completamente sin sonido para cumplir con las políticas de autoplay
         await video.play();
-
-        // Activar sonido después de 400ms
-        setTimeout(() => {
-          if (video) {
-            video.muted = false;
-          }
-        }, 400);
       } catch (error) {
         console.error('Error playing video:', error);
       }
