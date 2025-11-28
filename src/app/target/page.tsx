@@ -33,9 +33,9 @@ export default function TargetPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-start justify-center pt-8 pb-4 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center pt-4 pb-16 px-4 relative overflow-hidden">
       {/* Collage Background */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-2 grid-rows-2 h-full w-full">
           <div className="relative">
             <Image
@@ -167,7 +167,7 @@ export default function TargetPage() {
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+      <footer className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
         <a
           href="https://www.bestdrip.com.mx"
           target="_blank"

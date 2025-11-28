@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import VideoPreloader from "@/components/VideoPreloader";
 
@@ -211,6 +212,12 @@ export default function SplashPage() {
               {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
           </div>
+          <Link
+            href="/preview"
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border border-gray-700"
+          >
+            Diseña tu Drip
+          </Link>
         </div>
         {/* <Link
           href="/inicio"
