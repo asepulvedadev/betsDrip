@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface VideoPreloaderProps {
   onVideoEnd: () => void;
@@ -17,7 +17,7 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
     setIsMounted(true);
   }, []);
 
-  const handleVideoEnd = () => {
+  const handleVideoEnd = useCallback(() => {
     if (hasEndedRef.current) return;
     hasEndedRef.current = true;
 
@@ -28,7 +28,7 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
     setTimeout(() => {
       onVideoEnd();
     }, 300);
-  };
+  }, [onVideoEnd]);
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -57,7 +57,7 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
     return () => {
       video.removeEventListener('ended', handleEnded);
     };
-  }, [isMounted]);
+  }, [isMounted, handleVideoEnd]);
 
   if (!isMounted) {
     return (
