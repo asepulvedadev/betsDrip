@@ -9,28 +9,34 @@ interface TShirtProps {
 }
 
 export const TShirt = React.memo(({ frontTexture, backTexture }: TShirtProps) => {
+  // Display name
+  TShirt.displayName = 'TShirt'
   const { nodes, materials } = useGLTF('/models/t-shirt.glb')
 
   // Cargar texturas - siempre llamar el hook en el mismo orden
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const frontMap = useTexture(frontTexture || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const backMap = useTexture(backTexture || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')
 
   // Crear materiales separados con texturas
   const frontMaterial = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mat = (materials['Material.005'] as THREE.Material).clone()
     if (frontTexture && frontMap) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(mat as any).map = frontMap
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(mat as any).needsUpdate = true
     }
     return mat
   }, [frontTexture, frontMap, materials])
 
   const backMaterial = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mat = (materials['Material.005'] as THREE.Material).clone()
     if (backTexture && backMap) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(mat as any).map = backMap
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(mat as any).needsUpdate = true
     }
     return mat
@@ -57,7 +63,7 @@ export const TShirt = React.memo(({ frontTexture, backTexture }: TShirtProps) =>
 useGLTF.preload('/models/t-shirt.glb')
 
 // Componente Wrapper estático
-export const TShirtWrapper = React.memo(({ frontTexture, backTexture, ...props }: TShirtProps & any) => {
+export const TShirtWrapper = React.memo(({ frontTexture, backTexture, ...props }: TShirtProps & any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
   return (
     <group {...props}>
       <TShirt frontTexture={frontTexture} backTexture={backTexture} />

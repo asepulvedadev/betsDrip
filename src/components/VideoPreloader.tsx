@@ -57,6 +57,7 @@ export default function VideoPreloader({ onVideoEnd }: VideoPreloaderProps) {
     return () => {
       video.removeEventListener('ended', handleEnded);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted, handleVideoEnd]);
 
   if (!isMounted) {
